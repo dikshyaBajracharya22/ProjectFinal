@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <title>All Products - Sentiment Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+</head>
+<body>
+    <!------Header---->
+    <!------Header---->
+    <%- include("./partial/menu.ejs")%>
+
+
+<!----------------Account Page-------------------->
+
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="image/account.png" width="100%">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="indicator">
+                        </div>
+                        <form id="LoginForm">
+                            <input type="email" placeholder="Email" name="email" required>
+                            <input type="password" placeholder="Password" name="password" required>
+                            <input type="submit" class="acc-btn" value="Login">
+                        </form>
+
+                        <form id="RegForm">
+                            <input type="text" placeholder="Username" name="name" required>
+                            <input type="email" placeholder="Email" name="email" required>
+                            <input type="password" placeholder="Password" name="password" required>
+                            <input type="submit" class="acc-btn" value="Register">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!----Footer-->
+<%- include("./partial/footer.ejs")%>
+
+    
+
+
+<!---Js for toggle form----> 
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var indicator = document.getElementById("indicator");
+
+        function register(){
+            RegForm.style.transform = "translatex(0px)";
+            LoginForm.style.transform = "translatex(0px)";
+            indicator.style.transform = "translatex(100px)";
+
+        }
+
+        function login(){
+            RegForm.style.transform = "translatex(300px)";
+            LoginForm.style.transform = "translatex(300px)";
+            indicator.style.transform = "translatex(0px)";
+
+        }
+        //login api integration
+        LoginForm.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            const email=LoginForm.email.value;
+            const password=LoginForm.password.value;
+
+            console.log(email);
+
+            var res=fetch("/login",
+                {
+                    method:"POST",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(
+                        {
+                            email,
+                            password
+                        }
+
+                    )
+
+                }
+
+
+            ).then(
+                (result)=>{
+                    result.json().then(
+                        (user)=>{
+
+                                if(user.user) {
+                                    console.log(user.user);
+                                    location.assign("/");
+                                }
+                                
+                                 
+                                 
+                                
+                        }
+                    )
+                }
+            ).catch(
+                err=>console.log(err)
+            );
+
+        });
+
+        //registration api integration
+
+        RegForm.addEventListener("submit",async (e)=>{
+            e.preventDefault();
+            const name=RegForm.name.value;
+            const email=RegForm.email.value;
+            const password=RegForm.password.value;
+
+           const result= fetch(
+                "/register",
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify(
+                        {
+                            name,email,password
+                        }
+                    )
+                }
+            ).then((result=>{
+                result.json().then(
+              (data)=>{
+                  if(data.user)
+                  {
+                      alert("Account Created")
+                      location.assign("/account");
+                  }
+
+                  location.assign("/account")}
+            )
+
+            }));
+            
+
+
+        });
+    </script>
+</body>
+</html>

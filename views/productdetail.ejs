@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <title>All Products - Sentiment Analyzer</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <!------Header---->
+    <%- include("./partial/menu.ejs")%>
+
+<!---------Single Product details------->
+
+  <div class="alert" id="alert">
+      <div class="alert-header">
+          <h1>Confirmation</h1>
+       
+      
+        </div>
+        <div class="alert-cross" onclick="pressclose()">x</div>
+        <div class="alert-body">Do you really want to order? Once you order there is no way getting back?</div>
+
+        <div class="alert-btn">
+           
+            <a class="alert-cncl" onclick="pressclose()">Cancel</a>
+            <a class="alert-ok" onclick="pressok()">Okay</a>
+        </div>
+  </div>
+
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="/uploads/<%=product.image%>" width="100%" id="ProductImg"> <br>
+               
+            </div>
+            <div class="col-2">
+                
+                <h1><%=product.productname%></h1>
+        
+                <%- include("./partial/star.ejs",{rate:product.rate})%>
+               
+                <h3>Rs. <%=product.price%></h3>
+                
+                <select>
+                    <option>Select Color</option>
+                    <option>Red</option>
+                    <option>Black</option>
+                    <option>White</option>
+                    <option>Blue</option>
+                </select>
+                <input type="number" value="1">
+                   
+                        <a  class="btn" id="buy">Buy Product</a>
+                       
+                
+                    
+                   
+            
+               
+                <br> <br> <br>
+                <h3>Product Details</h3>
+                <p><%=product.description%></p>
+
+            </div>
+
+             
+   
+        </div>
+        <div><h1>Reviews</h1></div>
+        <div class="reviews">
+           
+            <%review.forEach(rev=>{%>
+            <div class="review">
+                <div class="username">
+                    <%=rev.writtenby.name%>
+                </div>
+               <div class="commentsp">
+                <%=rev.review%>
+               </div>
+               
+    
+                <%- include("./partial/star.ejs",{rate:rev.rate})%>
+               
+             
+    
+          </div>
+          <%})%>
+        </div>
+    </div>
+
+    
+
+   
+
+<!-----------------title---------------->
+    <!-- <div class="small-container">
+        <div class="comment-box">
+            <h2>All Users Reviews</h2>
+            <form action="#">
+                <div class="row row-2">
+                    <input type="text" name="full_name" placeholder="Full Name...">
+                    <input type="text" name="Your Title" placeholder="Enter Your Title...">
+                    <textarea name="comment" placeholder="Type Your Comment..."></textarea>
+                    <button type="submit" class="btn" >Post Comment </button>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+
+   
+<!----Footer-->
+
+<%- include("./partial/footer.ejs")%>
+   
+
+
+
+<!---Js for product gallery----> 
+    <script>
+        // var ProductImg = document.getElementById("ProductImg");
+        // var SmallImg = document.getElementsByClassName("small-img");
+
+        // SmallImg[0].onclick =function(){
+        //     ProductImg.src = SmallImg[0].src;
+        // }
+        // SmallImg[1].onclick =function(){
+        //     ProductImg.src = SmallImg[1].src;
+        // }
+        // SmallImg[2].onclick =function(){
+        //     ProductImg.src = SmallImg[2].src;
+        // }
+        // SmallImg[3].onclick =function(){
+        //     ProductImg.src = SmallImg[3].src;
+        // }
+
+         const alrt=document.getElementById("alert");
+        
+        pressok=()=>{
+           
+            alrt.style.display="none";
+            fetch("/buy-product/<%=product.id%>",{
+                method:"Post",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                    
+                
+            }).then(
+                (result)=>{
+                    result.json().then(
+                        (order)=>{
+                            if(order.order)
+                            {
+                                console.log(order);
+
+                                location.assign("/confirm");
+                            }
+                        }
+                    )
+                }
+            )
+
+        }
+        pressclose=()=>{
+            alrt.style.display="none";
+        }
+        
+        const btn=document.getElementById("buy");
+        btn.addEventListener("click",()=>{
+        
+
+            console.log("buy");
+
+            alrt.style.display="block";
+
+            
+           
+           
+            
+                
+
+                
+            
+            
+        });
+
+    
+        
+
+
+    </script>
+</body>
+</html>

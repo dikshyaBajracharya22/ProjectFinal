@@ -1,0 +1,60 @@
+<form id="edit-product">
+    <div>
+        <label>Product Name</label>
+        <input type="text" name="productname" value="<%=product.productname%>"/>
+    </div>
+  
+    <div>
+        <label>Description</label>
+        <input type="text" name="description" value="<%=product.description%>"/>
+    </div>
+    <div>
+        <label>Price</label>
+        <input type="text" name="price" value="<%=product.price%>"/>
+    </div>
+
+
+  <div>
+      <input type="submit" value="Update"/>
+  </div>
+
+
+
+</form>
+
+
+<script>
+
+    const form=document.getElementById("edit-product");
+    form.addEventListener("submit",(e)=>{
+
+        const productname=form.productname.value;
+        const price=form.price.value;
+        const description=form.description.value;
+
+        fetch("/admin/update-product/<%=product._id%>/?_method=PUT",{
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({productname,price,description})
+            
+        }).then((result)=>{
+           result.json().then((product)=>{
+                if(product.product)
+                {
+                     alert("Updated Successfully");
+                     location.assign("/admin/products");
+                }
+           });
+            
+        })
+
+    });
+
+  
+
+</script>
+

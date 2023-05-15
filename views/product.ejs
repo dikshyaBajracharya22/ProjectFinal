@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <title>All Products - Sentiment Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+</head>
+<body>
+    <!------Header---->
+    <%- include("./partial/menu.ejs")%>
+
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>All Products</h2>
+            <select>
+                <option>Default Sorting</option>
+                <option>Sort by price</option>
+                <option>sort by rating</option>
+                <option>sort by popularity</option>
+            </select>
+        </div>
+        <div class="row">
+            <% products.forEach(product=>{%>
+            
+                <div class="col-4">
+                    <a href="/products/<%=product._id%>">
+                        
+                        <img src="uploads/<%=product.image%>"></a>
+                    <h4><%=product.productname%></h4>
+                    <%- include("./partial/star.ejs",{rate:product.rate})%>
+                    <p color>Rs. <%=product.price%></p>
+                    <p><%=product.rate%></p>
+                </div>
+      
+            
+            <%})%>
+           
+        </div>
+
+        <div class="page-btn">
+            <a>1</a>
+            <a>2</a>
+            <a>3</a>
+            <a>4</a>
+        </div>
+    </div>
+
+<%- include("./partial/footer.ejs")%>
+<!--Js for toggle menu-->
+    
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Admin Login </title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+
+ 
+    <div class="container1">
+      
+        <div class="cover">
+        <div class="front">
+            <img src="/image/account.png">
+        </div>
+
+        </div>
+            <div class="forms">
+                <div class="form-content" >
+                <div>
+                    <div class="title">Login</div>
+                <form action="#" id="admin-login-form">
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Enter your email" required name="email">
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Enter your password" required name="password">
+                        </div>
+                     
+                            <input type="submit" value="Sumbit" class="acc-btn">
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var form=document.getElementById("admin-login-form");
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            var email=form.email.value;
+            var password=form.password.value;
+            
+            fetch(
+
+               "/admin/login",
+               {
+                   method:"POST",
+                   headers:{
+                       'Content-Type':"application/json"
+                   },
+                   body:JSON.stringify({email,password})
+               }
+
+            ).then((result)=>{
+
+                result.json().then((admin)=>{
+                    if(admin.admin)
+                    {
+                        location.assign("/admin/dashboard")
+                    }
+                    else{
+                        location.assign("/error");
+                    }
+                })
+
+                
+
+            })
+
+        });
+        
+    </script>
+</body>
+</html>

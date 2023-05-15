@@ -1,0 +1,26 @@
+<div class="model" id="edituser">
+    <h1 id="h1">
+        Edit Customer 
+    </h1>
+
+    <form id="edit-user" onsubmit=edit('<%=customer._id%>')>
+     <div class="input-container">
+         <label>Name</label>
+         <input type="text" name="name" value="<%=customer.name%>"/>
+     </div>
+   
+    
+     <div class="input-container">
+         <label>Email</label>
+         <input type="email" name="email" value="<%=customer.email%>"/>
+     </div>
+ 
+    
+ 
+   <div class="btn-container">
+     <button type="reset" class="cancel" onclick="closemodel()"">Close</button>
+     <input type="submit" value="Edit" class="confirm-btn" />
+   </div>
+
+    </form>
+</div> 

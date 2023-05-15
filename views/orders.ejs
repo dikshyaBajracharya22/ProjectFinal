@@ -1,0 +1,252 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css"/>
+    </head>
+
+    <body>
+        <%- include("./partial/menu.ejs")%>
+
+<div id="myModal" class="modal">
+ 
+  <div class="modal-content">
+
+    
+    <div class="modal-head">
+        <h1>How was your order?</h1>
+        <p>Let us know your opinion</p>
+    </div>
+  
+
+
+    <form id="review">
+        <div class="inp-container"> 
+            <textarea hint="Write a review" name="rev"  rows="7" ></textarea>
+        </div>
+         
+        <div class="btns">
+            <a id="post">Post</a>
+            <a class="cancel" onclick="closemodal()">Cancel</a>
+           
+            
+        </div>
+      
+       
+    </form>
+       
+    <div class="cross" onclick="closemodal()">
+        X
+    </div>
+        
+
+ <div>
+
+ </div>
+  </div>
+
+
+
+
+</div>
+
+<!-- <div id="sentimentModal"> 
+  <div class="modal-content">
+
+    <h1>Thanks for giving review...</h1>
+
+
+
+
+    <div class="btns">
+        
+        <a class="cancel" onclick="closemodal()">Cancel</a>
+       
+        
+    </div>
+  </div>
+    
+
+</div> -->
+<div class="container_table">
+
+    <div class="table">
+
+        <div class="row-head">
+            <div class="col">
+               S.No
+            </div>
+            <div class="col">
+                Name
+            </div>
+            <div class="col">
+                Date
+            </div>
+           
+            <div class="col">
+                Price
+            </div>
+            <div class="col">
+                Status
+            </div>   
+            <div class="col">
+
+                Action
+
+            </div>
+        </div>
+  
+    <% order.forEach((ord,ind)=>{%>
+           <div class=<%if(ind%2==0){%>"row"<%}else{
+               %>"roweven"<%
+           }%>>
+           <div class="col">
+               <%if(current==1){%>
+                  <%=ind+1%>
+                <%}else{%>
+                    <%=ind+1+9%>
+                    <%}%>
+           </div>
+             <div class="col">
+                 <%=ord.product.productname%>
+                 
+             </div>
+             <div class="col">
+              <%=moment(ord.date).format('MMM,DD YYYY,hh:mma')%>   
+            </div> 
+            <div class="col">
+                <%=ord.product.price%>
+                
+            </div>  
+            <div class="col">
+                <%if(ord.isdelivered){%>
+                    Delivered
+                    <%}else{%>
+                        Pending
+                        <%}%>
+                
+            </div>
+
+
+            <div class="col">
+
+                 <%if(ord.isdelivered){%>
+             
+                <a class="action" onclick=pressme("<%=ord.product._id%>") id="review">Write review</a>
+               
+                 <%}else{%>
+                    <a class="action" onclick="tryagain()" id="review">Write review</a>
+                    <%}%>
+
+            </div>
+              
+
+
+           </div>
+
+         
+        
+
+
+
+    <%})%>
+        </div>
+
+        <div>
+         
+            <div class="page-btn">
+           
+                <%for(var i=1;i<=pages;i++){%>
+                  
+                <a href="/orders?page=<%=i%>"><%=i%></a>
+              
+
+         
+                <%}%>
+        
+
+            
+          
+        </div>
+        </div>
+
+</div>
+
+       
+
+    <script>
+
+          var mymodel=document.getElementById("myModal");
+          var close=document.getElementById("close");
+          var review=document.getElementById("sentimentModal");
+
+          var productid;
+
+          pressme=(id,name)=>{
+             productid=id;
+           
+             mymodel.style.display="block";
+             console.log(productid);
+             console.log(name);
+
+          }
+        
+         var form=document.getElementById("review");
+         const post=document.getElementById("post");
+         post.addEventListener("click",()=>{
+                 console.log("Write review for "+productid);
+                 mymodel.style.display="none";
+                 const post=form.rev.value;
+
+                 fetch(
+                     "/write-comment/"+productid,
+                     {
+                         method:"PUT",
+                         headers:{
+                             "Content-Type":"application/json"
+                         },
+                         body:JSON.stringify({
+                             review:post
+
+                         })
+                     }
+
+                 ).then(
+                     result=>{
+
+                         result.json().then(
+
+                         (review)=>{
+
+                            if(review.success)
+                            {
+                                     
+                                  
+                                    // var rate=review.rate;
+                                    // alert("Thankyou for giving feedback.. You review was of " + rate +" stars");
+
+                                    location.assign("/thanks?rate="+review.rate+"&review="+review.review);
+
+
+                            }
+                            else
+                            {
+                                alert("error");
+
+                            }
+                         }
+                         )
+                     }
+                 )
+               
+         });
+         
+         closemodal=()=>{
+            mymodel.style.display="none";
+
+         }
+          
+
+         tryagain=()=>alert("Your product hasnt been delivered");
+       
+    </script>
+    </body>
+</html>

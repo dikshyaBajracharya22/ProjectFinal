@@ -1,0 +1,52 @@
+<form id="forms">
+
+
+    <input type="text" name="review"/>
+
+    <input type="submit" id="sub"/>
+</form>
+
+<script>
+    
+    var form=document.getElementById("forms");
+    var btn=document.getElementById("sub");
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const review=form.review.value;
+        fetch(
+            "/write-comment/<%=id%>",
+            
+           {
+               method:"Put",
+               headers:{
+                   "Content-Type":"application/json"
+               },
+               body:JSON.stringify({
+                   review:review
+                   
+               })
+
+           }
+        ).then((result)=>{
+          
+           
+            
+
+            result.json().then(
+                cmt=>{
+                    if(cmt.success)
+                    {
+                        alert("success");
+                    }
+                    else
+                    {
+                        alert("Error");
+                    }
+                }
+            )
+        })
+
+       
+    });
+  
+</script>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Sentiment Analyzer Admin</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="/adminstyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <%- include("./partial/sidemenu.ejs")%>
+
+    <div class="main-content">
+
+        <header>
+            <h2>
+                Product Detail
+           </h2>
+
+            <div class="user-wrapper">
+                    <div>
+                        <h4>Admin</h4>
+                    </div>
+           </div>
+        </header>
+
+       
+
+    
+        <main>
+
+
+            <div class="info-cont">
+                <div class="prod-det-img">
+                    <img src="/uploads/<%=product.image%>" alt="" height="150px" width="150px"/>
+                </div>
+
+              
+               <div>
+                <h2>Product Information</h2>
+            
+               </div>
+
+               
+              
+                
+                <div class="info-class">
+                    <div class="info-class-sub">
+                        
+                        <p class="info-head">Product Name</p>
+                        <p class="info-text"><%=product.productname%></p>
+                    </div>
+                    <div class="info-class-sub">
+                        <p class="info-head">Price</p>
+                        <p class="info-text"><%=product.price%></p>
+                    </div>
+                </div>
+    
+                <div>
+                    <p class="info-head">Product Description</p>
+                   <p class="info-text"> <%=product.description%></p>
+                </div>
+
+                <div>
+                    <p class="info-head">Rate</p>
+                    <%- include("./partial/star.ejs",{rate:product.rate})%>
+                </div>
+
+            </div>
+
+            <!-- <div>
+                <h1>Stars</h1>
+            </div> -->
+           
+            <div class="percent-container">
+
+                
+               
+                
+                <div class="percent-div">
+                    <h3>5 star</h3>
+                    <div class="circle green">
+                        <%= Math.floor(count5*100/count)%> %
+                    </div>
+                
+        
+                </div>
+                <div class="percent-div">
+                    <h3>4 star</h3>
+                    <div class="circle blue">
+                        <%= Math.floor(count4*100/count)%> %
+                    </div>
+                
+        
+                </div>
+                <div class="percent-div">
+                    <h3>3 star</h3>
+                    <div class="circle pink">
+                        <%= Math.floor(count3*100/count)%> %
+                    </div>
+                
+        
+                </div>
+                <div class="percent-div">
+                    <h3>2 star</h3>
+                    <div class="circle purple">
+                        <%= Math.floor(count2*100/count)%> %
+                    </div>
+                
+        
+                </div>
+                <div class="percent-div">
+                    <h3>1 star</h3>
+                    <div class="circle orange">
+                        <%= Math.floor(count1*100/count)%> %
+                    </div>
+                
+        
+                </div>
+               </div>
+
+        </main>
+
+      
+       
+        
+        
+
+
+
+     </div>
+
+    </body>
+    </html>

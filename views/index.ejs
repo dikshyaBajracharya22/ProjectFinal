@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <title>Product Review Sentiment Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+</head>
+<body>
+    <!------Header---->
+    <%- include("./partial/menu.ejs")%>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <h1>Sentiment Analysis <br> for Product Rating <br> system</h1>
+                    <p>Explore this world and have a new experience in a system that Product <br> 
+                        Rating system that detects hidden sentiments in comments and rates the <br> 
+                        product accordingly.</p>
+                    <a href="" class="btn">Get Started</a>
+                </div>
+                <div class="col-2">
+                    <img src="image/header img.png">
+                </div>
+            </div>
+        </div>  
+    </div>
+
+<!------How it works-->
+    <div class="how-it-works">
+        <div class="small-container">
+            <h2 class="tittle">How it Works</h2>
+            <div class="row">
+                <div class="col-3">
+                    <img src="image/Find-product.png">
+                    <h3> Find Your Product</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy.</p>       
+                </div>
+                
+                <div class="col-3">
+                    <img src="image/Leave-comment.png">
+                    <h3> Leave Your Comment</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy.</p>       
+                </div>  
+
+                <div class="col-3">
+                    <img src="image/Check-Rating.png">
+                    <h3> Check Your Rating</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy.</p>       
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="small-container">
+        <h2 class="tittle">Featured Products</h2>
+        <div class="row">
+            <div class="col-4">
+                <a href="Product-detail.html"><img src="image/product-1.jpg"></a>
+                <h4>Red T-shirt</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p color>Rs. 8000</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-2.jpg">
+                <h4>Black Color Shoes</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p color>Rs. 12,000</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-3.jpg">
+                <h4>Grey Color Trouser</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p color>Rs. 1300</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-4.jpg">
+                <h4>Puma T-shirt Blue</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p color>Rs. 2,50,000</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-6.jpg">
+                <h4>Puma T-shirt Black</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p color>Rs. 1200</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-7.jpg">
+                <h4>3 Pack of shocks</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p color>Rs. 1200</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-8.jpg">
+                <h4>Watch</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p color>Rs. 1000</p>
+            </div>
+            <div class="col-4">
+                <img src="image/product-10.jpg">
+                <h4>Shoes</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p color>Rs. 2800</p>
+            </div>
+        </div>
+    </div>
+
+    <!---------offer-----> 
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="image/exclusive.png" class="offer-img">
+                </div>
+
+                <div class="col-2">
+                    <p>Exclusively Available on Our Store</p>
+                    <h1>Smart Band 5</h1>
+                    <small>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat minus libero accusantium cupiditate sit eveniet ullam illo quia sed autem. Ab ducimus laboriosam hic repellat, culpa illum amet sint consectetur?
+                    </small>
+                    <a href="" class="btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!----Footer-->
+<%- include("./partial/footer.ejs")%>
+<!--Js for toggle menu-->
+   
+</body>
+</html>
